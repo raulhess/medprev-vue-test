@@ -3,14 +3,22 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Lista.vue') },
+      {
+        path: '',
+        name: 'lista',
+        component: () => import('pages/Lista.vue'),
+      },
     ],
   },
   {
     path: '/cadastro',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Cadastro.vue') },
+      {
+        path: '',
+        name: 'cadastro',
+        component: () => import('pages/Cadastro.vue'),
+      },
     ],
   },
 

@@ -1,9 +1,14 @@
 <template>
   <div class="fit padding-md">
-    <div style="max-width: 1000px; margin: 0px auto;">
+    <div class="view-container">
       <tabela :colunas="colunas" :dados="pessoas"  />
       <div class="texto-direita padding-y-md">
-        <button class="btn btn-primary" @click="addPerson()">ADICIONAR PESSOA</button>
+        <button
+          class="btn btn-primary"
+          @click="$router.push({ name: 'cadastro', params: { userId: '123' } })"
+        >
+          ADICIONAR PESSOA
+        </button>
       </div>
     </div>
   </div>
@@ -33,13 +38,6 @@ export default {
 
   created() {
     this.$store.dispatch('app/loadPessoas');
-  },
-
-  methods: {
-    addPerson() {
-      // this.$axios.post(this.host, { nome: 'Raul', email: 'raul.hess@gmail.com' },
-      // { 'Content-Type': 'application/json' });
-    },
   },
 };
 </script>
