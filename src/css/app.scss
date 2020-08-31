@@ -1,1 +1,40 @@
 // app global css in SCSS form
+$cor-primaria: #1381A2;
+$cor-secundaria: #FF6E83;
+
+
+/* LAYOUT */
+
+.app-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.app-header {
+    padding: 16px;
+    background-color: $cor-primaria;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+/* CORES */
+
+.fundo-primario {
+    background-color: $cor-primaria;
+}
+
+.fundo-secundario {
+    background-color: $cor-secundaria;
+}
+
+.fundo-cinza-1 {
+    background-color: #FAFAFA;
+}
+
+.texto-branco {
+    color: #FFFFFF;
+}
+
+.padding-md {
+    padding: 16px;
+}
