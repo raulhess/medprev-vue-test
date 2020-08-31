@@ -5,7 +5,7 @@
       <div class="texto-direita padding-y-md">
         <button
           class="btn btn-primary"
-          @click="$router.push({ name: 'cadastro', params: { userId: '123' } })"
+          @click="$router.push({ name: 'cadastro', params: {} })"
         >
           ADICIONAR PESSOA
         </button>
