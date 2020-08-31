@@ -1,10 +1,14 @@
 <template>
 <div class="app-container">
-  <div class="app-header">
-    <icone :nome="icone" tamanho="18px"/>
-    {{titulo}}
+  <header>
+    <section>
+      <icone :nome="icone" tamanho="18px"/>
+      {{titulo}}
+    </section>
+  </header>
+  <div class="page-container fundo-cinza-1">
+    <router-view />
   </div>
-  <router-view />
   </div>
 </template>
 
