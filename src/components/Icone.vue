@@ -1,7 +1,5 @@
 <template>
-  <div :class="computedClass" :style="computedStyle" >
-
-  </div>
+  <i :class="computedClass" :style="computedStyle" ></i>
 </template>
 
 <script>
