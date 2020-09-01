@@ -111,6 +111,11 @@ export default {
       nome: '',
       razaoSocial: '',
       cnpj: '',
+      optionsSexo: [
+        { value: 'm', label: 'Masculino' },
+        { value: 'f', label: 'Feminino' },
+        { value: 'o', label: 'Outro' },
+      ],
       optionsTipo: [
         { value: 'fisica', label: 'Pessoa física' },
         { value: 'juridica', label: 'Pessoa jurídica' },

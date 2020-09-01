@@ -1,5 +1,12 @@
 <template>
 <div class="app-container fundo-cinza-1">
+  <transition
+    enter-active-class="animated fadeIn"
+    leave-active-class="animated fadeOut"
+    mode="out-in"
+  >
+    <carregando v-show="status === 'carregando'" />
+  </transition>
   <!-- <header>
     <section>
       <icone :nome="icone" tamanho="18px"/>
@@ -15,13 +22,17 @@
   </section>
   </header>
   <div class="page-container">
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
   </div>
 </template>
 
 <script>
+import Carregando from 'components/Carregando';
 import Icone from 'components/Icone';
+import { mapState } from 'vuex';
 
 export default {
   name: 'MainLayout',
@@ -32,6 +43,7 @@ export default {
   },
 
   computed: {
+    ...mapState('app', ['status']),
     icone() {
       // TODO trazer título da store
       return 'mdi mdi-home';
@@ -43,7 +55,7 @@ export default {
   },
 
   components: {
-    Icone,
+    Carregando, Icone,
   },
 };
 </script>
