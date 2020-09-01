@@ -1,12 +1,20 @@
 <template>
-<div class="app-container">
-  <header>
+<div class="app-container fundo-cinza-1">
+  <!-- <header>
     <section>
       <icone :nome="icone" tamanho="18px"/>
       {{titulo}}
     </section>
+  </header> -->
+  <header class="navbar padding-sm padding-x-md ">
+  <section class="navbar-section">
+    <a href="#" class="navbar-brand mr-2 texto-negrito">
+      <icone :nome="icone" tamanho="18px" class="texto-primario"/>
+    </a>
+    <a href="#" class="navbar-brand mr-2 texto-negrito">{{titulo}}</a>
+  </section>
   </header>
-  <div class="page-container fundo-cinza-1">
+  <div class="page-container">
     <router-view />
   </div>
   </div>

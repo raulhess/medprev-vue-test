@@ -1,7 +1,10 @@
 // app global css in SCSS form
 $cor-primaria: #1381A2;
+$primary-color: #1381A2;
 $cor-secundaria: #FF6E83;
 $borda: solid 1px #CECECE;
+
+@import "node_modules/spectre.css/src/spectre";
 
 
 /* LAYOUT */
@@ -13,12 +16,12 @@ $borda: solid 1px #CECECE;
     flex-direction: column;
 }
 
-header {
-    padding: 16px;
-    background-color: $cor-primaria;
-    color: #FFFFFF;
-    font-size: 18px;
-}
+// header {
+//     padding: 16px;
+//     background-color: $cor-primaria;
+//     color: #FFFFFF;
+//     font-size: 18px;
+// }
 
 .page-container {
     flex: 1 0 0;
@@ -44,8 +47,22 @@ header {
     border-radius: 4px;
 }
 
+.margin-x-md {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
 .padding-md {
     padding: 16px;
+}
+
+.padding-sm {
+    padding: 8px;
+}
+
+.padding-x-md {
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .padding-y-md {
@@ -59,6 +76,10 @@ header {
 
 .texto-direita {
     text-align: right;
+}
+
+.texto-negrito {
+    font-weight: bold;
 }
 
 .texto-titulo-1 {
@@ -89,4 +110,7 @@ header {
 
 .texto-branco {
     color: #FFFFFF;
+}
+.texto-primario {
+    color: $cor-primaria;
 }
