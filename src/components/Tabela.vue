@@ -65,7 +65,6 @@ export default {
     },
     shownData() {
       const initialIndex = (this.currentPage - 1) * this.paginacao;
-      console.log(initialIndex, initialIndex + this.paginacao);
       return this.dados.slice(initialIndex, initialIndex + this.paginacao);
     },
   },

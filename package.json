@@ -14,7 +14,9 @@
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
     "quasar": "^1.0.0",
-    "spectre.css": "^0.5.9"
+    "spectre.css": "^0.5.9",
+    "v-mask": "^2.2.3",
+    "vuelidate": "^0.7.5"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",

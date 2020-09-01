@@ -3,6 +3,7 @@ $cor-primaria: #1381A2;
 $primary-color: #1381A2;
 $cor-secundaria: #FF6E83;
 $borda: solid 1px #CECECE;
+$md: 16px;
 
 @import "node_modules/spectre.css/src/spectre";
 
@@ -48,12 +49,12 @@ $borda: solid 1px #CECECE;
 }
 
 .margin-x-md {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: $md;
+    margin-right: $md;
 }
 
 .padding-md {
-    padding: 16px;
+    padding: $md;
 }
 
 .padding-sm {
@@ -61,13 +62,17 @@ $borda: solid 1px #CECECE;
 }
 
 .padding-x-md {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: $md;
+    padding-right: $md;
 }
 
 .padding-y-md {
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: $md;
+    padding-bottom: $md;
+}
+
+.padding-b-md {
+    padding-bottom: $md;
 }
 
 .texto-centro {
