@@ -228,7 +228,7 @@
           @click="submit()"
           :class="`btn btn-primary `"
         >
-          ADICIONAR
+          {{botao}}
         </button>
       </div>
     </div>
@@ -236,6 +236,7 @@
 </template>
 
 <script>
+/* eslint-disable func-names */
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import { required, requiredIf } from 'vuelidate/lib/validators';
@@ -247,6 +248,7 @@ Vue.use(Vuelidate);
 export default {
   data() {
     return {
+      id: '',
       tipo: '',
       nome: '',
       razaoSocial: '',
@@ -272,9 +274,36 @@ export default {
     };
   },
   computed: {
+    botao() {
+      if (this.id) return 'SALVAR';
+      return 'ADICIONAR';
+    },
     titulo() {
+      if (this.id) return 'Editar Pessoa';
       return 'Nova Pessoa';
     },
+  },
+  activated() {
+    if (this.$route.params.record) {
+      // eslint-disable-next-line no-underscore-dangle
+      this.id = this.$route.params.record._id;
+      this.tipo = this.$route.params.record.tipo;
+      this.nome = this.$route.params.record.nome;
+      this.razaoSocial = this.$route.params.record.razaoSocial;
+      this.cnpj = this.$route.params.record.cnpj;
+      this.cpf = this.$route.params.record.cpf;
+      this.sexo = this.$route.params.record.sexo;
+      this.dataNascimento = this.$route.params.record.dataNascimento;
+      this.email = this.$route.params.record.email;
+      this.telefone = this.$route.params.record.telefone;
+      this.celular = this.$route.params.record.celular;
+      this.foto = this.$route.params.record.foto;
+      this.enderecos = this.$route.params.record.enderecos;
+    }
+  },
+  beforeRouteLeave(to, from, next) {
+    this.clear();
+    next();
   },
   methods: {
     addEndereco() {
@@ -287,6 +316,22 @@ export default {
         estado: '',
         CEP: '',
       });
+    },
+    clear() {
+      this.id = '';
+      this.tipo = '';
+      this.nome = '';
+      this.razaoSocial = '';
+      this.cnpj = '';
+      this.cpf = '';
+      this.sexo = '';
+      this.dataNascimento = '';
+      this.email = '';
+      this.telefone = '';
+      this.celular = '';
+      this.foto = '';
+      this.enderecos = [];
+      this.$v.$reset();
     },
     submit() {
       this.$v.$touch();
@@ -312,9 +357,20 @@ export default {
           pessoa.sexo = this.sexo;
           pessoa.dataNascimento = this.dataNascimento;
         }
-        this.$store.dispatch('app/insertPessoa', pessoa).finally(() => {
-          this.submitStatus = 'ok';
-        });
+        if (this.id) {
+          pessoa.id = this.id;
+          this.$store.dispatch('app/editPessoa', pessoa).finally(() => {
+            this.submitStatus = 'ok';
+            this.clear();
+            this.$router.push({ name: 'lista', params: {} });
+          });
+        } else {
+          this.$store.dispatch('app/insertPessoa', pessoa).finally(() => {
+            this.submitStatus = 'ok';
+            this.clear();
+            this.$router.push({ name: 'lista', params: {} });
+          });
+        }
       }
     },
   },

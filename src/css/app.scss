@@ -4,7 +4,7 @@ $primary-color: #1381A2;
 $cor-secundaria: #FF6E83;
 $borda: solid 1px #CECECE;
 $md: 16px;
-$sm: 16px;
+$sm: 8px;
 
 @import "node_modules/spectre.css/src/spectre";
 
@@ -27,7 +27,7 @@ $sm: 16px;
 
 .page-container {
     flex: 1 0 0;
-    overflow-x: scroll;
+    overflow-y: scroll;
 }
 
 .view-container {
@@ -52,6 +52,10 @@ $sm: 16px;
 
 .margin-b-sm {
     margin-bottom: $sm;
+}
+
+.margin-r-sm {
+    margin-right: $sm;
 }
 
 .margin-x-md {

@@ -5,9 +5,24 @@
       <th v-for="(col,colIndex) of colunas" :key="'th-'+colIndex">
         {{col.label}}
       </th>
+      <th></th>
       <tr v-for="(data,dataIndex) of shownData" :key="'tr-'+dataIndex" class="active">
         <td v-for="(col,colIndex) of colunas" :key="'td-'+colIndex">
           {{getCol(data,col.nome)}}
+        </td>
+        <td>
+          <button
+            class="btn btn-action s-circle margin-r-sm"
+            @click="edit(data)"
+          >
+            <i class="mdi mdi-pencil"></i>
+          </button>
+          <button
+            class="btn btn-action s-circle"
+            @click="remove(data)"
+          >
+            <i class="mdi mdi-delete"></i>
+          </button>
         </td>
       </tr>
     </table>
@@ -61,6 +76,7 @@ export default {
       return this.currentPage > 1;
     },
     maxPages() {
+      if (this.dados.length === 0) return 1;
       return Math.ceil((this.dados.length / this.paginacao), 10);
     },
     shownData() {
@@ -78,9 +94,17 @@ export default {
       type: Array,
       default: () => [],
     },
+    edit: {
+      type: Function,
+      default: () => () => {},
+    },
+    remove: {
+      type: Function,
+      default: () => () => {},
+    },
     paginacao: {
       type: Number,
-      default: 2,
+      default: 5,
     },
   },
 
