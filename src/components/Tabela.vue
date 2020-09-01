@@ -80,7 +80,7 @@ export default {
     },
     paginacao: {
       type: Number,
-      default: 10,
+      default: 2,
     },
   },
 

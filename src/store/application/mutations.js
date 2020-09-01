@@ -1,3 +1,7 @@
+export function ADD_PESSOA(state, data) {
+  state.pessoas.push(data);
+}
+
 export function SET_PESSOAS(state, data) {
   state.pessoas = data;
 }

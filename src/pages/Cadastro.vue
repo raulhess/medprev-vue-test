@@ -221,10 +221,15 @@
         <button
           class="btn btn-link margin-x-md"
           @click="$router.push({ name: 'lista', params: {} })"
-          >
-            VOLTAR
-          </button>
-        <button class="btn btn-primary">ADICIONAR</button>
+        >
+          VOLTAR
+        </button>
+        <button
+          @click="submit()"
+          :class="`btn btn-primary `"
+        >
+          ADICIONAR
+        </button>
       </div>
     </div>
   </div>
@@ -233,7 +238,7 @@
 <script>
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-import { required } from 'vuelidate/lib/validators';
+import { required, requiredIf } from 'vuelidate/lib/validators';
 import { VueMaskDirective } from 'v-mask';
 
 Vue.directive('mask', VueMaskDirective);
@@ -263,6 +268,7 @@ export default {
         { value: 'fisica', label: 'Pessoa física' },
         { value: 'juridica', label: 'Pessoa jurídica' },
       ],
+      submitStatus: 'ok',
     };
   },
   computed: {
@@ -282,6 +288,35 @@ export default {
         CEP: '',
       });
     },
+    submit() {
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        this.submitStatus = 'erro';
+      } else {
+        this.submitStatus = 'carregando';
+        const pessoa = {
+          tipo: this.tipo,
+          nome: this.nome,
+          email: this.email,
+          telefone: this.telefone,
+          celular: this.celular,
+          foto: this.foto,
+          enderecos: this.enderecos,
+        };
+        if (this.tipo === 'juridica') {
+          pessoa.razaoSocial = this.razaoSocial;
+          pessoa.cnpj = this.cnpj;
+        }
+        if (this.tipo === 'fisica') {
+          pessoa.cpf = this.cpf;
+          pessoa.sexo = this.sexo;
+          pessoa.dataNascimento = this.dataNascimento;
+        }
+        this.$store.dispatch('app/insertPessoa', pessoa).finally(() => {
+          this.submitStatus = 'ok';
+        });
+      }
+    },
   },
   validations: {
     tipo: {
@@ -291,19 +326,29 @@ export default {
       required,
     },
     razaoSocial: {
-      required,
+      required: requiredIf(function () {
+        return this.tipo === 'juridica';
+      }),
     },
     cnpj: {
-      required,
+      required: requiredIf(function () {
+        return this.tipo === 'juridica';
+      }),
     },
     cpf: {
-      required,
+      required: requiredIf(function () {
+        return this.tipo === 'fisica';
+      }),
     },
     sexo: {
-      required,
+      required: requiredIf(function () {
+        return this.tipo === 'fisica';
+      }),
     },
     dataNascimento: {
-      required,
+      required: requiredIf(function () {
+        return this.tipo === 'fisica';
+      }),
     },
   },
 };
