@@ -4,6 +4,7 @@ $primary-color: #1381A2;
 $cor-secundaria: #FF6E83;
 $borda: solid 1px #CECECE;
 $md: 16px;
+$sm: 16px;
 
 @import "node_modules/spectre.css/src/spectre";
 
@@ -48,6 +49,10 @@ $md: 16px;
     border-radius: 4px;
 }
 
+.margin-b-sm {
+    margin-bottom: $sm;
+}
+
 .margin-x-md {
     margin-left: $md;
     margin-right: $md;
@@ -58,7 +63,7 @@ $md: 16px;
 }
 
 .padding-sm {
-    padding: 8px;
+    padding: $sm;
 }
 
 .padding-x-md {

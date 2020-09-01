@@ -1,11 +1,11 @@
 <template>
   <div class="bordas cantos-redondos fundo-branco" style="overflow:hidden;">
     <div class="texto-titulo-1 padding-md">Pessoas</div>
-    <table style="width: 100%">
+    <table style="width: 100%" >
       <th v-for="(col,colIndex) of colunas" :key="'th-'+colIndex">
         {{col.label}}
       </th>
-      <tr v-for="(data,dataIndex) of shownData" :key="'tr-'+dataIndex">
+      <tr v-for="(data,dataIndex) of shownData" :key="'tr-'+dataIndex" class="active">
         <td v-for="(col,colIndex) of colunas" :key="'td-'+colIndex">
           {{getCol(data,col.nome)}}
         </td>
@@ -120,6 +120,12 @@ th {
 
 tr {
   border-top: solid 1px #CECECE;
+  transition: background-color 0.5s;
+}
+
+tr:hover {
+  cursor: pointer;
+  background-color: #ececec;
 }
 
 td {
